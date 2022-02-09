@@ -3,9 +3,13 @@ from django.conf import settings
 #from autoslug import AutoslugField
 from datetime import datetime
 
+import uuid
+
 from django.contrib.auth.models import User
 
 class Donate(models.Model):
+
+    donate_id= models.UUIDField(default = uuid.uuid4)
 
     email = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
