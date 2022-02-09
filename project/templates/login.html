@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<center>
+
+    <br>
+    <br>
+    <br>
+
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header">Enter your details correctly</div>
+    <div class="card-body">
+      <form action="" method="post">{% csrf_token %}
+      <h5 class="card-title">Login here!</h5>
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+        <input name='name' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
+        <input name = 'password' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <button type="submit" class="btn btn-light CENTER">Login</button>
+    </form>
+   
+    </div>
+  </div>
+  </center>
+
+
+ {% endblock %} 

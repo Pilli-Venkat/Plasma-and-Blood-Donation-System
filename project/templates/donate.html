@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <body>
+      <div class="container-fluid">
+        <center>
+          <br>
+          <br><br>
+        <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+      <!--   <img src= '{% static "donate.jpg" %}' class="card-img-top" alt="Picture"> -->
+
+          <div class="card-body">
+
+              <h5 class="card-title">Donate Plasma</h5>
+              <p class="card-text">Hello, {{request.user.first_name}}!</p>
+              <p class="card-text">Enter your details</p>
+            
+              <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+                  <input value ="{{request.user.first_name}} {{ request.user.last_name}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" readonly>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                  <input value ="{{request.user.email}} " type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" readonly>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Age</span>
+                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Gender</span>
+                  <select>
+                    <option value="male" >Male</option>
+                      <option value="female" >Female</option>
+                     
+                  </select> 
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Plasma or Blood</span>
+                
+                  <select>
+                    <option value="Plasma" >Plasma</option>
+                      <option value="Blood" >Blood</option>
+                     
+                  </select>    
+                </div>
+                
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Blood Group</span>
+                
+                  <select>
+                      {% for i in bloodgroups %}
+                      <option value="{{i}}" >{{i}}</option>
+                      {% endfor %}
+                  </select>    
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">State</span><br>
+                
+                  <select>
+                      {% for i in states %}
+                      <option value="{{i}}" >{{i}}</option>
+                      {% endfor %}
+                  </select>    
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Mobile Number</span>
+                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+          
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Address</span>
+                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+          
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Any health issues </span>
+                  <input placeholder="If mention any ?" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+          
+                <button type="button" class="btn btn-light CENTER">Submit</button>
+            
+          </div>
+      </center>
+        </div>
+
+
+      </div>
+
+    
+    
+    
+    
+      
+
+    
+    </body>
+
+
+{% endblock %}
