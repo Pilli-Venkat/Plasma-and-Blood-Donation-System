@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+
+    {% for i in data %}
+
+
+    <div class="card" style="width: 18rem;">
+        {% if i.choose == 'BLOOD' %}
+        <img src="{% static 'bloodicon.png' %}" class="card-img-top" alt="blood">
+        {% else %}
+        <img src="{% static 'plasmaicon.JPG' %}" class="card-img-top" alt="plasma">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{i.choose}} {{i.blood_group}}</h5>
+          <p class="card-title">{{i.posted_at}}</p>
+          <p class="card-title">{{i.state}}</p>
+
+        
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{i.name}} <br>{{i.age}} <br>{{i.gender}}</li>
+          
+          
+       
+        
+         
+         
+          <li class="list-group-item">{{i.address}}</li>
+         
+          <li class="list-group-item">Health issues : {{i.issues}}</li>
+         
+         
+
+        </ul>
+        <div class="card-body">
+          <a  href='tel:{{i.mobile}}' class="card-link">Call</a>
+          <a href="mailto:{{i.email}}" class="card-link">Mail</a>
+        </div>
+      </div>
+
+    
+
+    {% endfor %}
+</div>
+    {% endblock %}

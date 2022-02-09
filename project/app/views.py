@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from . models import Donate
 # Create your views here.
 def home(request):
     return render (request,'home.html')
@@ -45,4 +46,6 @@ def donate(request):
     return render (request,'donate.html',context = {'bloodgroups':bloodgroups,'states':states})
 
 def receive(request):
-    return render (request,'receive.html')
+    data = Donate.objects.all()
+    print(data)
+    return render (request,'receive.html',context = {'data': data,})
