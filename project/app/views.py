@@ -72,3 +72,21 @@ def receive(request):
     data = Donate.objects.all()
     print(data)
     return render (request,'receive.html',context = {'data': data,})
+    
+def receive_state(request):
+    if request.method == 'POST':
+        state=request.POST.get('state')
+
+    data = Donate.objects.all()
+    print(data)
+    return render (request,'receive.html',context = {'data': data,})  
+
+def receive_group(request):
+    data = Donate.objects.all()
+    print(data)
+    return render (request,'receive.html',context = {'data': data,})
+
+def receive_choose(request):
+    data = Donate.objects.all()
+    print(data)
+    return render (request,'receive.html',context = {'data': data,})          

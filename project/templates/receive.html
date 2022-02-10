@@ -2,47 +2,120 @@
 {% load static %}
 {% block content %}
 
+<style>
+
+    .img{
+        width:40%;
+        float:right;
+       
+
+     
+    }
+    .txt{
+       float:left; 
+      
+    }
+    .card{
+        border:1px solid;
+        color:black;
+    }
+   
+
+ 
+
+</style>    
+<body>
+
+    <div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">State</span><br>
+          
+            <select name='state'>
+                {% for i in states %}
+                <option  value="{{i}}" >{{i}}</option>
+                {% endfor %}
+            </select>    
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Blood Group</span>
+          
+            <select name='bloodgroups' >
+                {% for i in bloodgroups %}
+                <option  value="{{i}}" >{{i}}</option>
+                {% endfor %}
+            </select>    
+          </div>
+
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Plasma or Blood</span>
+          
+            <select name='choose'>
+              <option  value="Plasma" >Plasma</option>
+                <option value="Blood" >Blood</option>
+               
+            </select>    
+          </div>
+    </div>
+
 
     {% for i in data %}
 
 
             <div class="card" style="width: 18rem;">
-                {% if i.choose == 'BLOOD' %}
-                <img  src="{% static 'bloodi.png' %}" class="" alt="blood">
-                {% else %}
-                <img src="{% static 'plasmaicon.JPG' %}" class="card-img-top" alt="plasma">
-                {% endif %}
+                
                 <div class="card-body">
-                <h5 class="card-title">{{i.choose}} {{i.blood_group}}</h5>
+                <div class='txt'>    
+              
+                <h5 class="card-title"><a href ='/detail/{{i.donate_id}}'>{{i.choose}} {{i.blood_group}}</a></h5>
                 <p class="card-title">{{i.posted_at}}</p>
                 <p class="card-title">{{i.state}}</p>
 
+                </div>
+
+                <div class='img'>
+                    
+                {% if i.choose == 'Blood' %}
+                <a href ='/detail/{{i.donate_id}}' ><img   src="{% static 'bloodi.png' %}" class=" photo" alt="blood"> </a>
+                {% else %}
+                <a href ='/detail/{{i.donate_id}}' ><img  src="{% static 'plasmaicon.JPG' %}" class="card-img-top photo" alt="plasma"></a>
+                {% endif %}
+                </div>
+                  
+
                 
                 </div>
+                <!--
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item">{{i.name}} <br>{{i.age}} <br>{{i.gender}}</li>
+                <li class="list-group-item">Health issues : {{i.issues}}</li>
                 
                 
             
+                -->
                 
                 
                 
                 <li class="list-group-item">{{i.address}}</li>
                 
-                <li class="list-group-item">Health issues : {{i.issues}}</li>
+                
                 
                 
 
                 </ul>
+                <!--
+
                 <div class="card-body">
                 <a  href='tel:{{i.mobile}}' class="card-link">Call</a>
                 <a href="mailto:{{i.email}}" class="card-link">Mail</a>
                 <a href ='/detail/{{i.donate_id}}' class="card-link">View</a>
                 
                 </div>
-            </div>
+                -->
+            </div><br>
 
     
 
     {% endfor %}
+</body>
+
 {% endblock %}
