@@ -21,14 +21,19 @@ class Donate(models.Model):
     state = models.CharField(max_length=100)
     mobile= models.IntegerField(null=False,blank=False)
     address = models.CharField(max_length=250)
+    city = models.CharField(max_length=250,null=False,blank=False)
+    district = models.CharField(max_length=250,null=False,blank=False)
 
-    description = models.CharField(null=True, blank=True, max_length=250)
+  #  description = models.CharField(null=True, blank=True, max_length=250)
 
     issues = models.CharField(null=True, blank=True,max_length=250)
     
     posted_at = models.DateField(default=datetime.now,null=True,blank=True)
     is_published = models.BooleanField(default=True)
     author = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-posted_at',]
 
 
     def __str__(self):

@@ -4,7 +4,15 @@
 
 <style>
 
-    .img{
+    
+    .photo1{
+        width:30%;
+        float:right;
+       
+
+     
+    }
+    .photo2{
         width:40%;
         float:right;
        
@@ -19,6 +27,12 @@
         border:1px solid;
         color:black;
     }
+    .filter{
+        text-align:center;
+    }
+    .card{ 
+        text-align: center;
+    }
    
 
  
@@ -26,39 +40,59 @@
 </style>    
 <body>
 
-    <div>
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-sm">State</span><br>
-          
-            <select name='state'>
-                {% for i in states %}
-                <option  value="{{i}}" >{{i}}</option>
-                {% endfor %}
-            </select>    
-          </div>
-          <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Blood Group</span>
-          
-            <select name='bloodgroups' >
-                {% for i in bloodgroups %}
-                <option  value="{{i}}" >{{i}}</option>
-                {% endfor %}
-            </select>    
-          </div>
+<center>
 
-          <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Plasma or Blood</span>
-          
-            <select name='choose'>
-              <option  value="Plasma" >Plasma</option>
-                <option value="Blood" >Blood</option>
-               
-            </select>    
-          </div>
+    <div class="filter card-body ">
+        <form method="post" action=''>
+            {% csrf_token %}
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">State</span><br>
+              
+                <select name='state'>
+                    {% for i in states %}
+                    <option  value="{{i}}" >{{i}}</option>
+                    {% endfor %}
+                </select>    
+              </div>
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Address</span>
+                <input name='address' type="text" class="" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+              </div>
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Blood Group</span>
+              
+                <select name='bloodgroups' >
+                    {% for i in bloodgroups %}
+                    <option  value="{{i}}" >{{i}}</option>
+                    {% endfor %}
+                </select>    
+              </div>
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Plasma or Blood</span>
+              
+                <select name='choose'>
+                    {% for i in choose %}
+                 
+                    <option value="{{i}}" >{{i}}</option>
+                    {% endfor %}
+                   
+                </select>    
+              </div>
+      
+       <button type="submit">Search</button>
+       <button><a href="{% url 'receive' %}">Clear</a></button>
+        </form>
     </div>
+</center>
+    <br>
+
+    <div class=>
+        <tr>
 
 
-    {% for i in data %}
+    {% for i in data %} 
+        <td>
+
 
 
             <div class="card" style="width: 18rem;">
@@ -69,15 +103,16 @@
                 <h5 class="card-title"><a href ='/detail/{{i.donate_id}}'>{{i.choose}} {{i.blood_group}}</a></h5>
                 <p class="card-title">{{i.posted_at}}</p>
                 <p class="card-title">{{i.state}}</p>
+                <p class="card-title">~{{i.name}}</p>
 
                 </div>
 
                 <div class='img'>
                     
                 {% if i.choose == 'Blood' %}
-                <a href ='/detail/{{i.donate_id}}' ><img   src="{% static 'bloodi.png' %}" class=" photo" alt="blood"> </a>
+                <a href ='/detail/{{i.donate_id}}' ><img   src="{% static 'bloodi.png' %}" class="photo1" alt="blood"> </a>
                 {% else %}
-                <a href ='/detail/{{i.donate_id}}' ><img  src="{% static 'plasmaicon.JPG' %}" class="card-img-top photo" alt="plasma"></a>
+                <a href ='/detail/{{i.donate_id}}' ><img  src="{% static 'plasmaicon.JPG' %}" class="photo2" alt="plasma"></a>
                 {% endif %}
                 </div>
                   
@@ -93,9 +128,11 @@
             
                 -->
                 
+                <li class="list-group-item">{{i.district}}</li>
                 
-                
-                <li class="list-group-item">{{i.address}}</li>
+                <li class="list-group-item">{{i.city}}</li>
+
+                <li class="list-group-item">{{i.author}}</li>
                 
                 
                 
@@ -111,11 +148,82 @@
                 
                 </div>
                 -->
-            </div><br>
+            </div>
 
-    
+        <br>
 
     {% endfor %}
+    <br>
+    </tr>
+        </div>
+
+        <div class="card-group">
+
+
+            {% for i in data1 %}
+        
+        
+                    <div class="card" style="width: 18rem;">
+                        
+                        <div class="card-body">
+                        <div class='txt'>    
+                      
+                        <h5 class="card-title"><a href ='/detail/{{i.donate_id}}'>{{i.choose}} {{i.blood_group}}</a></h5>
+                        <p class="card-title">{{i.posted_at}}</p>
+                        <p class="card-title">{{i.state}}</p>
+                        <p class="card-title">~{{i.name}}</p>
+        
+                        </div>
+        
+                        <div class='img'>
+                            
+                        {% if i.choose == 'Blood' %}
+                        <a href ='/detail/{{i.donate_id}}' ><img   src="{% static 'bloodi.png' %}" class=" photo" alt="blood"> </a>
+                        {% else %}
+                        <a href ='/detail/{{i.donate_id}}' ><img  src="{% static 'plasmaicon.JPG' %}" class="card-img-top photo" alt="plasma"></a>
+                        {% endif %}
+                        </div>
+                          
+        
+                        
+                        </div>
+                        <!--
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{i.name}} <br>{{i.age}} <br>{{i.gender}}</li>
+                        <li class="list-group-item">Health issues : {{i.issues}}</li>
+                        
+                        
+                    
+                        -->
+                        
+                        <li class="list-group-item">{{i.district}}</li>
+                        
+                        <li class="list-group-item">{{i.city}}</li>
+        
+                        <li class="list-group-item">{{i.author}}</li>
+                        
+                        
+                        
+                        
+        
+                        </ul>
+                        <!--
+        
+                        <div class="card-body">
+                        <a  href='tel:{{i.mobile}}' class="card-link">Call</a>
+                        <a href="mailto:{{i.email}}" class="card-link">Mail</a>
+                        <a href ='/detail/{{i.donate_id}}' class="card-link">View</a>
+                        
+                        </div>
+                        -->
+                    </div>
+        
+            
+        
+            {% endfor %}
+            
+                </div>
+      
 </body>
 
 {% endblock %}

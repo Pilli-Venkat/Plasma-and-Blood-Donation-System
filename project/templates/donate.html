@@ -1,88 +1,154 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style>
+  .t{
+    width: 40%;
+    background-color:black;
+    padding:20px;
+    border-radius:30px;
+  
+  }
+
+</style> 
     <body>
       <div class="container-fluid">
         <center>
           <br>
           <br><br>
-        <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+       
       <!--   <img src= '{% static "donate.jpg" %}' class="card-img-top" alt="Picture"> -->
 
-          <div class="card-body">
+          
+
 
               <h5 class="card-title">Donate Plasma</h5>
               <p class="card-text">Hello, {{request.user.first_name}}!</p>
               <p class="card-text">Enter your details</p>
               <form method="post" action=''>{% csrf_token %}
+              
             
-                <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
-                  <input name='name' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
-                <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
-                  <input name='email' value ="{{request.user.email}} " type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" readonly>
-                </div>
-                <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Age</span>
-                  <input name='age' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
-                <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Gender</span>
-                  <select name='gender'>
-                    <option  value="MALE" >Male</option>
-                      <option value="FEMALE" >Female</option>
+                <div  class='t'>
+                  <table class='table table-borderless'>
+                    <tr>
+                      <td>
+                        
+                        <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+                        <input name='name' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                      </div>
+            
+                      </td>
+                      <td>
+            
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                        <input name='email' value ="{{request.user.email}} " type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" readonly>
+                      </div>
+            
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Age</span>
+                        <input name='age' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                      </div>
+                      </td>
+                      <td>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Gender</span>
+                        <select name='gender'>
+                          <option  value="MALE" >Male</option>
+                            <option value="FEMALE" >Female</option>
+                           
+                        </select> 
+                      </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>  
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Plasma or Blood</span>
+                      
+                        <select name='choose'>
+                          <option  value="Plasma" >Plasma</option>
+                            <option value="Blood" >Blood</option>
+                           
+                        </select>    
+                      </div>
+                      </td>
+                      <td>
+                      
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Blood Group</span>
+                      
+                        <select name='bloodgroups' >
+                            {% for i in bloodgroups %}
+                            <option  value="{{i}}" >{{i}}</option>
+                            {% endfor %}
+                        </select>    
+                      </div>
+                      </td>
+                    <tr>
+                      <td>
+                      <div class="input-group input-group-sm mb-3">
+                   <!--     <span class="input-group-text" id="inputGroup-sizing-sm">State</span><br> -->
+                      
+                        <select name='state'>
+                            {% for i in states %}
+                            <option  value="{{i}}" >{{i}}</option>
+                            {% endfor %}
+                        </select>    
+                      </div>
+                      </td>
+                      <td>
                      
-                  </select> 
-                </div>
-                <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Plasma or Blood</span>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">District</span>
+                        <input name='district' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                      </div>
+                      </td>
+                      
+                    <tr>
+                      <td>
+                        <div class="input-group input-group-sm mb-3">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">City</span>
+                          <input name='city' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                        </td>
+                      <td>
                 
-                  <select name='choose'>
-                    <option  value="Plasma" >Plasma</option>
-                      <option value="Blood" >Blood</option>
-                     
-                  </select>    
-                </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Address</span>
+                        <input name='address' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                      </div>
+                    </td>
+                  
+                    
+                    <tr>
+                      <td>
+                        <div class="input-group input-group-sm mb-3">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">Mobile Number</span>
+                          <input name='mobile' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                      </td>
+                      <td>
                 
-                <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Blood Group</span>
+                      <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Any health issues </span>
+                        <input name='issues' placeholder="If mention any ?" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                      </div>
+                      </td>
+                    </tr>
+                  </table>
                 
-                  <select name='bloodgroups' >
-                      {% for i in bloodgroups %}
-                      <option  value="{{i}}" >{{i}}</option>
-                      {% endfor %}
-                  </select>    
-                </div>
-                <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">State</span><br>
-                
-                  <select name='state'>
-                      {% for i in states %}
-                      <option  value="{{i}}" >{{i}}</option>
-                      {% endfor %}
-                  </select>    
-                </div>
-                <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Mobile Number</span>
-                  <input name='mobile' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
-          
-                <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Address</span>
-                  <input name='address' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
-          
-                <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Any health issues </span>
-                  <input name='issues' placeholder="If mention any ?" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
           
                 <button type="submit" class="btn btn-light CENTER">Submit</button>
             
-                </form>
-          </div>
+              </form>
+            </div>
+         
       </center>
         </div>
 
