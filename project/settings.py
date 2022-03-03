@@ -16,7 +16,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['venkat-blood-plasma-therapy.herokuapp.com/','127.0.0.1:8000/']
+ALLOWED_HOSTS = ['*','venkat-blood-plasma-therapy.herokuapp.com','127.0.0.1:8000']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-hd_s@8d)-59t@%277vh_64$2%fqg=ny68sworry93xu6b$g_e=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
