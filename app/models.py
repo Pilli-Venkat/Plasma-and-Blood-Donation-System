@@ -11,7 +11,7 @@ class Donate(models.Model):
 
     donate_id= models.UUIDField(default = uuid.uuid4)
 
-    email = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
     name = models.CharField(max_length=100)
    # slug=AutoslugField(populate_from='name',)
     age = models.IntegerField(null=False,blank=False)
